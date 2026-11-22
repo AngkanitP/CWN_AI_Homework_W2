@@ -1,0 +1,5 @@
+web-1  | Warning: connect.session() MemoryStore is not
+web-1  | designed for a production environment, as it will leak
+web-1  | memory, and will not scale past a single process.
+web-1  | [start] e-Service ฟังที่พอร์ต 3000 · TEST_MODE=1 · BUG_MODE=- · DB_PATH=/app/data/app.db
+

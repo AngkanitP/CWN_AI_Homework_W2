@@ -1,0 +1,100 @@
+npm notice run egov-eservice-e2e@1.0.0 npx
+npm notice run 'playwright' test --reporter=line,json --output=/workspace/plans/egov-eservice/app/test-runs/bug-B12-artifacts
+
+Running 51 tests using 1 worker
+
+[1/51] [chromium] › tests/part1.spec.ts:137:1 › TC-AUTH-01 เลขบัตร 13 หลัก + checksum
+[2/51] [chromium] › tests/part1.spec.ts:172:1 › TC-AUTH-02 OTP ผิด 3 ครั้งล็อก 15 นาที
+[3/51] [chromium] › tests/part1.spec.ts:289:1 › TC-AUTH-03 ลงทะเบียนครั้งแรก
+[4/51] [chromium] › tests/part1.spec.ts:353:1 › TC-AUTH-04 เจ้าหน้าที่ SSO จำลองและหน้าตั้งต้นตามบทบาท
+[5/51] [chromium] › tests/part1.spec.ts:408:1 › TC-FEE-01 ค่าธรรมเนียม SV-01 / SV-02 / SV-03
+[6/51] [chromium] › tests/part1.spec.ts:487:1 › TC-SUBMIT-01 ยื่นคำขอ SV-01 ครบวงจร
+[7/51] [chromium] › tests/part1.spec.ts:558:1 › TC-SUBMIT-02 เอกสารบังคับครบก่อนชำระ
+[8/51] [chromium] › tests/part1.spec.ts:625:1 › TC-SUBMIT-03 ร่าง การลบร่าง และการยกเลิก
+[9/51] [chromium] › tests/part1.spec.ts:739:1 › TC-UPLOAD-01 ขนาดและจำนวนไฟล์
+[10/51] [chromium] › tests/part1.spec.ts:800:1 › TC-UPLOAD-02 ชนิดไฟล์จากเนื้อไฟล์
+[11/51] [chromium] › tests/part1.spec.ts:854:1 › TC-PAY-01 อายุ QR 15:00
+[12/51] [chromium] › tests/part1.spec.ts:904:1 › TC-PAY-02 ยอดเงินและ callback ซ้ำ
+[13/51] [chromium] › tests/part1.spec.ts:933:1 › TC-PAY-03 ชำระพร้อมกัน เลขไม่ซ้ำ
+[14/51] [chromium] › tests/part1.spec.ts:968:1 › TC-PAY-04 เลขคำขอข้ามปี 2569 → 2570
+[15/51] [chromium] › tests/part1.spec.ts:1012:1 › TC-QUEUE-01 ลำดับคิวและขอบเขตแผนก
+[16/51] [chromium] › tests/part1.spec.ts:1076:1 › TC-QUEUE-02 รับเรื่องซ้อน (พร้อมกันและต่อกัน)
+[17/51] [chromium] › tests/part1.spec.ts:1160:1 › TC-QUEUE-03 งานในมือสูงสุด 10
+[18/51] [chromium] › tests/part1.spec.ts:1229:1 › TC-SLA-01 กำหนดเสร็จตามตารางวันที่
+[19/51] [chromium] › tests/part1.spec.ts:1257:1 › TC-SLA-02 หยุดนับ SLA ระหว่างรอแก้ไข
+[20/51] [chromium] › tests/part1.spec.ts:1357:1 › TC-SLA-03 ระดับเตือน ปกติ / ใกล้ครบกำหนด / เกินกำหนด
+[21/51] [chromium] › tests/part1.spec.ts:1482:1 › TC-NOTI-01 ผู้รับแจ้งเตือนตามระดับ
+[22/51] [chromium] › tests/part1.spec.ts:1486:1 › TC-NOTI-02 ไม่แจ้งซ้ำ ข้ามระดับ และขั้นรออนุมัติ/รอออกเอกสาร
+[23/51] [chromium] › tests/part2.spec.ts:205:1 › TC-WORKFLOW-01 SV-01 อนุมัติ + ออกเอกสาร
+[24/51] [chromium] › tests/part2.spec.ts:267:1 › TC-WORKFLOW-02 SV-02 ผ่านหัวหน้า
+[25/51] [chromium] › tests/part2.spec.ts:337:1 › TC-WORKFLOW-03 SV-03 สามขั้นตอน
+[26/51] [chromium] › tests/part2.spec.ts:409:1 › TC-WORKFLOW-04 ตีกลับสูงสุด 2 ครั้ง และผลหลังครบ
+  1) [chromium] › tests/part2.spec.ts:409:1 › TC-WORKFLOW-04 ตีกลับสูงสุด 2 ครั้ง และผลหลังครบ › ส่วน A SV-01 …000020 ตีกลับครั้งที่ 1 2 ✓ ครั้งที่ 3 ✗ (จับ B12) 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('return-btn')
+    Expected: 0
+    Received: 1
+    Timeout:  7000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('return-btn') with timeout 7000ms
+      - waiting for getByTestId('return-btn')
+        18 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      437 |     await openOfficer(p, NO);
+      438 |     await expectStatus(p, 'IN_REVIEW');
+    > 439 |     await expect(tid(p, 'return-btn')).toHaveCount(0);
+          |                                        ^
+      440 |     const err = await expectApi(returnRaw(r1.api, NO, R10), 409, 'RETURN_LIMIT');
+      441 |     expect(err.message).toBe(MSG.RETURN_LIMIT);
+      442 |     const c = await getCase(r1.api, NO);
+        at /workspace/plans/egov-eservice/app/e2e/tests/part2.spec.ts:439:40
+        at /workspace/plans/egov-eservice/app/e2e/tests/part2.spec.ts:412:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-runs/bug-B12-artifacts/part2-TC-WORKFLOW-04-ตีกลับสูงสุด-2-ครั้ง-และผลหลังครบ-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-runs/bug-B12-artifacts/part2-TC-WORKFLOW-04-ตีกลับสูงสุด-2-ครั้ง-และผลหลังครบ-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-runs/bug-B12-artifacts/part2-TC-WORKFLOW-04-ตีกลับสูงสุด-2-ครั้ง-และผลหลังครบ-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-runs/bug-B12-artifacts/part2-TC-WORKFLOW-04-ตีกลับสูงสุด-2-ครั้ง-และผลหลังครบ-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[27/51] [chromium] › tests/part2.spec.ts:506:1 › TC-WORKFLOW-05 เหตุผล ≥ 10 ตัวอักษร (ตีกลับ/ไม่อนุมัติ)
+[28/51] [chromium] › tests/part2.spec.ts:582:1 › TC-WORKFLOW-06 เวลาแก้ไข 168 ชั่วโมง
+[29/51] [chromium] › tests/part2.spec.ts:626:1 › TC-DOC-01 ออกเอกสารและข้อมูลใน PDF
+[30/51] [chromium] › tests/part2.spec.ts:683:1 › TC-DOC-02 ตรวจเอกสาร /verify
+[31/51] [chromium] › tests/part2.spec.ts:720:1 › TC-DOC-03 เอกสารหมดอายุและลายเซ็นไม่ตรง
+[32/51] [chromium] › tests/part2.spec.ts:782:1 › TC-PDPA-01 ปิดบังเลขบัตรบนจอ
+[33/51] [chromium] › tests/part2.spec.ts:820:1 › TC-PDPA-02 API (JSON) ไม่ส่งเลขบัตรเต็ม
+[34/51] [chromium] › tests/part2.spec.ts:857:1 › TC-PDPA-03 แสดงเลขเต็มต้องมีเหตุผลและ Audit
+[35/51] [chromium] › tests/part2.spec.ts:909:1 › TC-DASH-01 Dashboard ตัวเลขเริ่มต้น
+[36/51] [chromium] › tests/part2.spec.ts:954:1 › TC-DASH-02 Dashboard ย้อนหลัง พ.ย. ต.ค. รายปี
+[37/51] [chromium] › tests/part2.spec.ts:981:1 › TC-DASH-03 ส่งออก Excel/PDF เท่าหน้าจอ และไม่มีข้อมูลส่วนบุคคล
+[38/51] [chromium] › tests/part2.spec.ts:1052:1 › TC-DASH-04 ค่าขอบ "ทันกำหนด" 16:29:59 / 16:30:00 / 16:30:01
+[39/51] [chromium] › tests/part2.spec.ts:1107:1 › TC-AUDIT-01 เหตุการณ์และฟิลด์ใน Audit
+[40/51] [chromium] › tests/part2.spec.ts:1224:1 › TC-AUDIT-02 Audit แก้/ลบไม่ได้ (405)
+[41/51] [chromium] › tests/part2.spec.ts:1275:1 › TC-AUDIT-03 กรองช่วงวันที่ตามเวลาไทย
+[42/51] [chromium] › tests/part2.spec.ts:1316:1 › TC-RBAC-01 ประชาชนเปิดคำขอคนอื่นไม่ได้ (IDOR)
+[43/51] [chromium] › tests/part2.spec.ts:1352:1 › TC-RBAC-02 เจ้าหน้าที่อนุมัติ SV-02 ไม่ได้ (API)
+[44/51] [chromium] › tests/part2.spec.ts:1387:1 › TC-RBAC-03 ตารางสิทธิ์หน้า/API ตามบทบาท
+[45/51] [chromium] › tests/part2.spec.ts:1493:1 › TC-RBAC-04 ผู้ดูแลระบบ: บริการ วันหยุด ผู้ใช้ และยอดที่ล็อก
+[46/51] [chromium] › tests/part2.spec.ts:1619:1 › TC-RBAC-05 สิทธิ์เปิด/ดาวน์โหลดไฟล์แนบ
+[47/51] [chromium] › tests/part2.spec.ts:1690:1 › TC-RBAC-06 ผู้ดูแลระบบ: ช่วงค่าที่ยอมรับ
+[48/51] [chromium] › tests/part2.spec.ts:1776:1 › TC-NFR-01 Responsive 375 / 768 / 1280
+[49/51] [chromium] › tests/part2.spec.ts:1846:1 › TC-NFR-02 WCAG: axe + คีย์บอร์ด + label + สถานะไม่ใช้สีอย่างเดียว
+[50/51] [chromium] › tests/part2.spec.ts:1950:1 › TC-NFR-03 Health เวลาโหลด และผลซ้ำได้
+[51/51] [chromium] › tests/part2.spec.ts:2017:1 › TC-NFR-04 เข้ารหัสข้อมูลส่วนบุคคลที่เก็บ (inspection)
+  1 failed
+    [chromium] › tests/part2.spec.ts:409:1 › TC-WORKFLOW-04 ตีกลับสูงสุด 2 ครั้ง และผลหลังครบ ──────
+  50 passed (3.3m)

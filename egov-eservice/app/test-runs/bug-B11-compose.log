@@ -1,0 +1,57 @@
+ Image egov-eservice-web:latest Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 525B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.16kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:20-bookworm-slim
+#3 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 95B done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/node:20-bookworm-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+#5 resolve docker.io/library/node:20-bookworm-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 1.08kB done
+#6 DONE 0.0s
+
+#7 [2/6] WORKDIR /app
+#7 CACHED
+
+#8 [3/6] COPY package.json package-lock.json* ./
+#8 CACHED
+
+#9 [5/6] COPY src ./src
+#9 CACHED
+
+#10 [4/6] RUN (npm ci --omit=dev --no-audit --no-fund || npm install --omit=dev --no-audit --no-fund)  || (apt-get update && apt-get install -y --no-install-recommends python3 make g++      && npm install --omit=dev --no-audit --no-fund --build-from-source      && apt-get purge -y python3 make g++ && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*)
+#10 CACHED
+
+#11 [6/6] RUN mkdir -p /app/data
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:6422a86c3cf8e9e5a149965172d565132dbabd7e6f22deff3b3c4b6989fc22a3 done
+#12 exporting config sha256:87f107f261babb6f59f52af762c44434e11354faac984a6805a757de244049a4 done
+#12 exporting attestation manifest sha256:3ea3212516d2845000bcc61685360da8e3bbe092fa552aa5b549b2eb3a139e89 0.0s done
+#12 exporting manifest list sha256:5e79b5075354b6e2a3fa2be58625de7e114dfde6a2268a17726476d7c799c089 0.0s done
+#12 naming to docker.io/library/egov-eservice-web:latest
+#12 naming to docker.io/library/egov-eservice-web:latest done
+#12 unpacking to docker.io/library/egov-eservice-web:latest 0.0s done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image egov-eservice-web:latest Built 
+ Container web-web-1 Recreate 
+ Container web-web-1 Recreated 
+ Container web-web-1 Starting 
+ Container web-web-1 Started 
